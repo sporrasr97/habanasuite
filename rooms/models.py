@@ -14,15 +14,21 @@ class House(models.Model):
         verbose_name = 'casa'
         verbose_name_plural = 'casa'
         
+    def __str__(self):
+        return self.name
+        
 class Room(models.Model):
     name = models.CharField(max_length=100, verbose_name='nombre')
     description = models.TextField(verbose_name='descripción')
     images = models.ImageField(upload_to='rooms', verbose_name='imágenes')
     house = models.ForeignKey(House, on_delete=models.CASCADE, verbose_name='casa', null=True, blank=True)
-    # services = models.ManyToManyField()
+    #services = models.ManyToManyField()
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación", null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición", null=True, blank=True)
     
     class Meta:
         verbose_name = 'habitación'
         verbose_name_plural = 'habitaciones'
+        
+    def __str__(self):
+        return self.name
