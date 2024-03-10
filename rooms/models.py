@@ -1,5 +1,7 @@
 from django.db import models
 
+from services.models import Service
+
 # Create your models here.
 class House(models.Model):
     name = models.CharField(max_length=50, verbose_name='nombre')
@@ -22,7 +24,7 @@ class Room(models.Model):
     description = models.TextField(verbose_name='descripción')
     images = models.ImageField(upload_to='rooms', verbose_name='imágenes')
     house = models.ForeignKey(House, on_delete=models.CASCADE, verbose_name='casa', null=True, blank=True)
-    #services = models.ManyToManyField()
+    services = models.ManyToManyField(Service, verbose_name='servicios', related_name='get_rooms')
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación", null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición", null=True, blank=True)
     
