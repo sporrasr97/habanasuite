@@ -4,11 +4,16 @@ from django.views.generic.detail import DetailView
 from rest_framework import generics
 
 from rooms.models import Room, House
-from rooms.serializers import HouseSerializer
+from rooms.serializers import HouseSerializer, RoomSerializer
 
 # Create your views here.
-class RoomListView(ListView):
-    model = Room
+class RoomListView(generics.ListAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+    
+class RoomDetailView(generics.RetrieveAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
 
 class HouseDetailView(generics.RetrieveAPIView):
     queryset = House.objects.all()
