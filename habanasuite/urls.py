@@ -23,4 +23,6 @@ urlpatterns = [
     #app core
     path('', include('core.urls')),
     
+    #app rooms
+    path('', include('rooms.urls')),
 ]
