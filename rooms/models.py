@@ -23,8 +23,8 @@ class Room(models.Model):
     name = models.CharField(max_length=100, verbose_name='nombre')
     description = models.TextField(verbose_name='descripción')
     images = models.ImageField(upload_to='rooms', verbose_name='imágenes')
-    house = models.ForeignKey(House, on_delete=models.CASCADE, verbose_name='casa', null=True, blank=True)
-    services = models.ManyToManyField(Service, verbose_name='servicios', related_name='get_rooms')
+    house = models.ForeignKey(House, on_delete=models.CASCADE, verbose_name='casa', null=True, blank=True, related_name='get_house_rooms')
+    services = models.ManyToManyField(Service, verbose_name='servicios', related_name='get_service_rooms')
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación", null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición", null=True, blank=True)
     
